@@ -1,0 +1,576 @@
+<html>
+<head>
+    <title>Exercício XI</title>
+</head>
+<style>
+    *{
+        font-family: "eco vera sans";
+       color:white;
+    }
+    
+    
+
+    
+body{
+        background-color: black;
+    
+       
+    }
+    
+#divForm{
+        width: 420px;
+        margin: 40px auto 0px auto;
+    
+    }
+    
+input{
+    display: block;
+    height: 40px;
+    width: 400px;
+    margin: 5px;
+    border-radius: 30px;
+    border: 1px solid white;
+    font-size: 16pt;
+    background-color: inherit;
+   opacity: 0.5;
+    outline: none;
+    }
+label{
+       color: white; 
+        display: block;
+    }
+    
+button{
+        background-color: white;
+        color: black;
+   
+    }
+    
+    
+    
+button {
+  background-color: white;
+  border: none;
+ 
+  width: 100px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: black; 
+  color: pink; 
+  border: 2px solid pink;
+}
+    
+button:hover {
+  background-color: white;
+  color: white;
+    }
+    
+#smallAge{
+        font-size: 7.0pt;
+        color: white;
+        margin-left: 160px;
+    }
+    
+    
+#crip
+    {
+        position: absolute;
+    }
+    
+#listCrip {
+        margin-bottom: -120px;
+        margin-left: -500px !important;
+        font-size: 11px;
+    display: none;
+   
+    
+    }
+    
+</style>
+<body id="body">
+<div id="divForm">
+    
+    
+    <div id="listCrip">
+        Lista das Criptomoedas cadastradas:<br><br>
+        <b style="color:orange">Bitcoin</b><br>
+        <b style="color:gray">Ethereum</b><br>
+        <b style="color:cornflowerblue">Litecoin</b><br>
+        <b style="color:mediumpurple">So</b><b style="color:cornflowerblue">la</b><b style="color:palegreen">na</b><br>
+        <b style="color:indianred">XRP</b><br>
+        <b style="color:royalblue">Cardano</b><br>
+        
+        <b style="color:yellow">ielort</b><br>
+        
+        
+      
+        
+    
+    
+    </div>
+    
+    
+    
+    <h1 id="title" style="padding-left: 6px ">Visualizar Logos das Criptos</h1>
+    
+    <form>
+        
+       
+        <label style="color: pink">Digite a Criptomoeda a ser buscada:</label> <input type="text" id="criptomoeda" style="text-transform: lowercase"><br>
+        
+        <button id="buttonLimpar" style="border-radius: 10px" type="reset">Limpar</button>
+
+    </form>
+    
+    
+     <button id="buttonBuscar" style="border-radius: 10px;margin-top: -39px;margin-left: 305px" type="submit" onclick="return searchLogo()">Buscar Logo</button>
+    
+       
+    
+
+    <center>
+      
+       <br>
+       <div id="crip">  </div>
+       <br>
+       
+    </center>
+     <br><Br><br>
+    
+   
+    <br>
+    <button id="buttonOcultar" style="border-radius: 10px;display: none" type="submit" onclick="return processingHidden()">Ocultar</button>
+    
+    <button id="buttonDesocultar" style="border-radius: 10px;margin-top: -25px;margin-left: 305px;display: none" type="submit" onclick="return processingShow()">Desocultar</button>
+    
+    <br>
+  
+    <script>
+        
+//        Acrescendo movimento nas logos
+        
+        
+         var position = 0;
+         var speed = 10;
+         var time = 100;
+        
+        
+        function runCripto()
+        {
+           position += speed;
+            
+            if(position >= 900)
+                {
+                    speed = speed *-1;
+                }
+            
+            if(position < 600 && speed < 0)
+                {
+                    speed = speed *-1;
+                }
+            
+            document.getElementById("crip").style.left = position;
+            setTimeout("runCripto()",time);
+            
+        }
+        
+       
+        setTimeout("runCripto()",time);
+        
+       
+       
+        
+        
+//        Função para esconder o elemento
+        
+        function processingHidden()
+        {
+            document.getElementById("crip").style.display = "none";
+         
+            
+        }
+        
+        
+        
+        
+//        Função para Mostrar o elemento
+        
+        
+         function processingShow()
+        {
+            document.getElementById("crip").style.display = "block";
+             
+            
+        }
+        
+        
+//    Função para pegar as informações pelos ID's          
+
+        
+        function getVar(IdElement)
+        {
+            return document.getElementById(IdElement).value;
+        }
+        
+
+        
+        
+        
+
+//        Trazendo as informações das Logos
+       
+
+        function searchLogo()
+        
+      
+        {
+            var criptomoeda = getVar("criptomoeda");
+            
+            if(criptomoeda == "")
+                {
+                   
+            
+                    document.getElementById("crip").innerHTML = "Informe a criptomoeda"; 
+                    return true;
+                   
+                }
+            
+            
+            if(criptomoeda == "bitcoin")
+            {
+                
+                document.getElementById("listCrip").style.display = "none";
+               
+                document.getElementById("crip").innerHTML = "";
+                var img = document.createElement("img");
+                img.src ="https://i.postimg.cc/85Nd48RX/bitcoin.png";
+                img.style.width = "100px";
+                document.getElementById("buttonOcultar").style.display = "block";
+                document.getElementById("buttonDesocultar").style.display = "block";
+                
+                
+                document.getElementById("criptomoeda").style.color = "white";
+                document.getElementById("criptomoeda").style.backgroundColor = "ff9517";
+                
+                
+                document.getElementById("crip").appendChild(img);
+                document.getElementById("body").style.backgroundColor = "white";
+                document.getElementById("title").style.color = "ff9517";
+                document.getElementById("title").innerHTML = "<B style=color:black>Você está Visualizando</B> BTC";
+                document.getElementById("buttonLimpar").style.backgroundColor = "white";
+                document.getElementById("buttonBuscar").style.backgroundColor = "white";
+                document.getElementById("buttonOcultar").style.backgroundColor = "white";
+                document.getElementById("buttonDesocultar").style.backgroundColor = "white";
+                
+                document.getElementById("buttonLimpar").style.color = "ff9517";
+                document.getElementById("buttonBuscar").style.color = "ff9517";
+                document.getElementById("buttonOcultar").style.color = "ff9517";
+                document.getElementById("buttonDesocultar").style.color = "ff9517";
+                
+                
+                document.getElementById("buttonLimpar").style.borderColor = "ff9517";
+                document.getElementById("buttonBuscar").style.borderColor = "ff9517";
+                document.getElementById("buttonOcultar").style.borderColor = "ff9517";
+                document.getElementById("buttonDesocultar").style.borderColor = "ff9517";
+                
+                 
+                
+                
+               
+            }
+            
+            
+             if(criptomoeda == "ethereum")
+            {
+                
+                document.getElementById("listCrip").style.display = "none";
+                
+                document.getElementById("buttonOcultar").style.display = "block";
+                document.getElementById("buttonDesocultar").style.display = "block";
+                document.getElementById("criptomoeda").style.color = "white";
+                document.getElementById("criptomoeda").style.backgroundColor = "black";
+                
+                document.getElementById("crip").innerHTML = ""; 
+                var img = document.createElement("img");
+                img.src ="https://i.postimg.cc/xdDxH4cq/ethereum.png";
+                img.style.width = "100px"; 
+                
+                document.getElementById("crip").appendChild(img);
+                document.getElementById("body").style.backgroundColor = "white";
+                document.getElementById("title").style.color = "8c8c8c";
+                document.getElementById("title").innerHTML = "<B style=color:black>Você está Visualizando</B> ETH";
+                document.getElementById("buttonLimpar").style.backgroundColor = "343434";
+                document.getElementById("buttonBuscar").style.backgroundColor = "343434";
+                document.getElementById("buttonOcultar").style.backgroundColor = "343434";
+                document.getElementById("buttonDesocultar").style.backgroundColor = "343434";
+                
+                document.getElementById("buttonLimpar").style.color = "white";
+                document.getElementById("buttonBuscar").style.color = "white";
+                document.getElementById("buttonOcultar").style.color = "white";
+                document.getElementById("buttonDesocultar").style.color = "white";
+                
+                
+                document.getElementById("buttonLimpar").style.borderColor = "white";
+                document.getElementById("buttonBuscar").style.borderColor = "white";
+                document.getElementById("buttonOcultar").style.borderColor = "white";
+                document.getElementById("buttonDesocultar").style.borderColor = "white";
+                
+                
+            }
+            
+            
+            
+            
+            
+             if(criptomoeda == "litecoin")
+            {
+                document.getElementById("listCrip").style.display = "none";
+                
+                document.getElementById("buttonOcultar").style.display = "block";
+                document.getElementById("buttonDesocultar").style.display = "block";
+                document.getElementById("criptomoeda").style.color = "white";
+                document.getElementById("criptomoeda").style.backgroundColor = "345d9d";
+                
+                document.getElementById("crip").innerHTML = ""; 
+                var img = document.createElement("img");
+                img.src ="https://i.postimg.cc/52dKF278/litecoin-2.png";
+                img.style.width = "70px";
+               
+                
+                document.getElementById("crip").appendChild(img);
+                document.getElementById("body").style.backgroundColor = "white";
+                document.getElementById("title").style.color = "345d9d";
+                document.getElementById("title").innerHTML = "<B style=color:black>Você está Visualizando</B> LTC";
+                document.getElementById("buttonLimpar").style.backgroundColor = "345d9d";
+                document.getElementById("buttonBuscar").style.backgroundColor = "345d9d";
+                document.getElementById("buttonOcultar").style.backgroundColor = "345d9d";
+                document.getElementById("buttonDesocultar").style.backgroundColor = "345d9d";
+                
+                document.getElementById("buttonLimpar").style.color = "white";
+                document.getElementById("buttonBuscar").style.color = "white";
+                document.getElementById("buttonOcultar").style.color = "white";
+                document.getElementById("buttonDesocultar").style.color = "white";
+                
+                
+                document.getElementById("buttonLimpar").style.borderColor = "white";
+                document.getElementById("buttonBuscar").style.borderColor = "white";
+                document.getElementById("buttonOcultar").style.borderColor = "white";
+                document.getElementById("buttonDesocultar").style.borderColor = "white";
+                
+            }
+            
+            
+             if(criptomoeda == "xrp")
+            {
+                
+                document.getElementById("listCrip").style.display = "none";
+                
+                document.getElementById("buttonOcultar").style.display = "block";
+                document.getElementById("buttonDesocultar").style.display = "block";
+                document.getElementById("criptomoeda").style.color = "white";
+                document.getElementById("criptomoeda").style.backgroundColor = "262626";
+                
+                
+                document.getElementById("crip").innerHTML = ""; 
+                var img = document.createElement("img");
+                img.src ="https://i.postimg.cc/Zn3Np4nM/XRP.png";
+                img.style.width = "70px";
+               
+                
+                document.getElementById("crip").appendChild(img);
+                document.getElementById("body").style.backgroundColor = "white";
+                document.getElementById("title").style.color = "262626";
+                document.getElementById("title").innerHTML = "<B style=color:black>Você está Visualizando</B> XRP";
+                document.getElementById("buttonLimpar").style.backgroundColor = "white";
+                document.getElementById("buttonBuscar").style.backgroundColor = "white";
+                document.getElementById("buttonOcultar").style.backgroundColor = "white";
+                document.getElementById("buttonDesocultar").style.backgroundColor = "white";
+                
+                document.getElementById("buttonLimpar").style.color = "262626";
+                document.getElementById("buttonBuscar").style.color = "262626";
+                document.getElementById("buttonOcultar").style.color = "262626";
+                document.getElementById("buttonDesocultar").style.color = "262626";
+                
+                
+                document.getElementById("buttonLimpar").style.borderColor = "262626";
+                document.getElementById("buttonBuscar").style.borderColor = "262626";
+                document.getElementById("buttonOcultar").style.borderColor = "262626";
+                document.getElementById("buttonDesocultar").style.borderColor = "262626";   
+            }
+            
+            
+             if(criptomoeda == "solana")
+            {
+                
+                document.getElementById("listCrip").style.display = "none";
+                
+                document.getElementById("buttonOcultar").style.display = "block";
+                document.getElementById("buttonDesocultar").style.display = "block";
+                document.getElementById("criptomoeda").style.color = "1fdeb0";
+                document.getElementById("criptomoeda").style.backgroundColor = "7c7fd7";
+                
+                
+                document.getElementById("crip").innerHTML = ""; 
+                var img = document.createElement("img");
+                img.src ="https://i.postimg.cc/ZYW33kMc/solana.png";
+                img.style.width = "70px";
+               
+                
+                document.getElementById("crip").appendChild(img);
+                document.getElementById("body").style.backgroundColor = "black";
+                document.getElementById("title").style.color = "1fdeb0";
+                document.getElementById("title").innerHTML = "<B style=color:#ae4ceb>Você está Visualizando</B> SOL";
+                document.getElementById("buttonLimpar").style.backgroundColor = "7c7fd7";
+                document.getElementById("buttonBuscar").style.backgroundColor = "7c7fd7";
+                document.getElementById("buttonOcultar").style.backgroundColor = "7c7fd7";
+                document.getElementById("buttonDesocultar").style.backgroundColor = "7c7fd7";
+                
+                document.getElementById("buttonLimpar").style.color = "1fdeb0";
+                document.getElementById("buttonBuscar").style.color = "1fdeb0";
+                document.getElementById("buttonOcultar").style.color = "1fdeb0";
+                document.getElementById("buttonDesocultar").style.color = "1fdeb0";
+                
+                
+                document.getElementById("buttonLimpar").style.borderColor = "ae4ceb";
+                document.getElementById("buttonBuscar").style.borderColor = "ae4ceb";
+                document.getElementById("buttonOcultar").style.borderColor = "ae4ceb";
+                document.getElementById("buttonDesocultar").style.borderColor = "ae4ceb"; 
+                
+                
+            }
+            
+            
+             
+            
+             if(criptomoeda == "cardano" || criptomoeda == "ada")
+            {
+                
+                document.getElementById("listCrip").style.display = "none";
+                
+                document.getElementById("buttonOcultar").style.display = "block";
+                document.getElementById("buttonDesocultar").style.display = "block";
+                document.getElementById("criptomoeda").style.color = "0032ad";
+                document.getElementById("criptomoeda").style.backgroundColor = "#ae4ceb";
+                
+                
+                document.getElementById("crip").innerHTML = ""; 
+                var img = document.createElement("img");
+                img.src ="https://i.postimg.cc/mDyHZRX3/cardano.png";
+                img.style.width = "70px";
+               
+                
+                document.getElementById("crip").appendChild(img);
+                document.getElementById("body").style.backgroundColor = "white";
+                document.getElementById("title").style.color = "0032ad";
+                document.getElementById("title").innerHTML = "<B style=color:#ae4ceb>Você está Visualizando</B> ADA";
+                document.getElementById("buttonLimpar").style.backgroundColor = "white";
+                document.getElementById("buttonBuscar").style.backgroundColor = "white";
+                document.getElementById("buttonOcultar").style.backgroundColor = "white";
+                document.getElementById("buttonDesocultar").style.backgroundColor = "white";
+                
+                document.getElementById("buttonLimpar").style.color = "0032ad";
+                document.getElementById("buttonBuscar").style.color = "0032ad";
+                document.getElementById("buttonOcultar").style.color = "0032ad";
+                document.getElementById("buttonDesocultar").style.color = "0032ad";
+                
+                
+                document.getElementById("buttonLimpar").style.borderColor = "0032ad";
+                document.getElementById("buttonBuscar").style.borderColor = "0032ad";
+                document.getElementById("buttonOcultar").style.borderColor = "0032ad";
+                document.getElementById("buttonDesocultar").style.borderColor = "0032ad";   
+            }
+            
+            
+                if(criptomoeda != "cardano" &&
+                   criptomoeda != "ada" &&
+                   criptomoeda != "bitcoin" &&
+                   criptomoeda != "solana" &&
+                   criptomoeda != "ethereum" &&
+                   criptomoeda != "litecoin" &&
+                   criptomoeda != "xrp")
+                    
+                    {
+                    document.getElementById("listCrip").style.display = "block";
+                        
+                        
+                    document.getElementById("criptomoeda").style.color = "red";
+                    document.getElementById("criptomoeda").style.backgroundColor = "white";
+
+
+                    document.getElementById("crip").innerHTML = ""; 
+                    
+                    document.getElementById("body").style.backgroundColor = "black";
+                    document.getElementById("title").style.color = "red";
+                    document.getElementById("title").innerHTML = "<B style=color:red>Cripto não encontrada!";
+                    document.getElementById("buttonLimpar").style.backgroundColor = "black";
+                    document.getElementById("buttonBuscar").style.backgroundColor = "black";
+                    document.getElementById("buttonOcultar").style.display = "none";
+                    document.getElementById("buttonDesocultar").style.display = "none";
+
+                    document.getElementById("buttonLimpar").style.color = "red";
+                    document.getElementById("buttonBuscar").style.color = "red";
+                   
+
+
+                    document.getElementById("buttonLimpar").style.borderColor = "red";
+                    document.getElementById("buttonBuscar").style.borderColor = "red";
+                    
+                    }
+                   
+            
+                    if(criptomoeda == "ielort")
+            {
+                
+                document.getElementById("listCrip").style.display = "block";
+                
+                document.getElementById("buttonOcultar").style.display = "block";
+                document.getElementById("buttonDesocultar").style.display = "block";
+                document.getElementById("criptomoeda").style.color = "lightcoral";
+                document.getElementById("criptomoeda").style.backgroundColor = "white";
+                
+                
+                document.getElementById("crip").innerHTML = ""; 
+                var img = document.createElement("img");
+                img.src ="https://i.postimg.cc/fyx00nfC/comercial.jpg";
+                img.style.width = "100px";
+                document.getElementById("crip").style.center = 1;
+               
+                
+                document.getElementById("crip").appendChild(img);
+                document.getElementById("body").style.backgroundColor = "pink";
+                document.getElementById("title").style.color = "white";
+                document.getElementById("title").innerHTML = "<B style=color:white>Leia o nome dessa cripto de trás pra frente</B> IELORT";
+                document.getElementById("buttonLimpar").style.backgroundColor = "white";
+                document.getElementById("buttonBuscar").style.backgroundColor = "white";
+                document.getElementById("buttonOcultar").style.backgroundColor = "white";
+                document.getElementById("buttonDesocultar").style.backgroundColor = "white";
+                
+                document.getElementById("buttonLimpar").style.color = "lightcoral";
+                document.getElementById("buttonBuscar").style.color = "lightcoral";
+                document.getElementById("buttonOcultar").style.color = "lightcoral";
+                document.getElementById("buttonDesocultar").style.color = "lightcoral";
+                
+                
+                document.getElementById("buttonLimpar").style.borderColor = "lightcoral";
+                document.getElementById("buttonBuscar").style.borderColor = "lightcoral";
+                document.getElementById("buttonOcultar").style.borderColor = "lightcoral";
+                document.getElementById("buttonDesocultar").style.borderColor = "lightcoral";   
+            }
+            
+            
+                    
+            
+            
+        }
+        
+        
+       
+        
+    </script>
+</div>
+</body>
+
+</html>

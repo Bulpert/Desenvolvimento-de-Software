@@ -1,0 +1,184 @@
+
+<html>
+    <head>
+        <title>Exercício II</title>
+    <script>
+        function calcularSalarioM() {
+        
+        var salario = 10000;
+        
+        var barba = document.querySelector(".barba").value;
+            
+        var altura = document.querySelector(".altura").value;
+       
+        var corDosOlhos = document.querySelector(".corDosOlhos").value;
+            
+    
+       
+       
+         
+            if ( barba == "sim") {var salario = salario+100}
+            
+            if ( altura > 1.80) {var salario = salario+250}
+            
+            if ( corDosOlhos == "verde") {var salario = salario+500}
+             if ( corDosOlhos == "amarelo") {var salario = salario+1000}
+            
+        var resultadoM = salario;
+            
+        document.querySelector(".resultadoM").innerHTML = "Seu Salário é de &#36; " + resultadoM ;
+    }
+        
+        
+    function calcularSalarioF() {
+        
+        var salarioF = 10000;
+        
+        var cabeloF = document.querySelector(".cabeloF").value;
+            
+        var alturaF = document.querySelector(".alturaF").value;
+       
+        var corDosOlhosF = document.querySelector(".corDosOlhosF").value;
+            
+    
+       
+       
+         
+            if ( cabeloF == "loiro" || cabeloF == "loira" || cabeloF == "amarelo") {var salarioF = salarioF+250}
+        
+    
+            
+            if ( alturaF < 1.68 && alturaF > 0) {var salarioF = salarioF+500}
+            
+            if ( corDosOlhosF == "azul") {var salarioF = salarioF+1500}
+             if ( corDosOlhosF == "amarelo") {var salarioF = salarioF+1000}
+            
+        var resultadoF = salarioF;
+            
+        document.querySelector(".resultadoF").innerHTML = "Seu Salário é de &#36; " + resultadoF;
+    }
+        
+    </script>
+    
+    <style>
+        *{
+            font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+            padding: 2px !important;
+            font: bold;
+           
+                
+        }
+        input{
+            border-radius:10px;
+        
+        }
+        
+        p{
+            font-size: 30px
+        }
+        
+    </style>
+    <meta charset="utf-8">
+    <title>Documento sem título</title>
+    </head>
+    
+    <body style="background-color: black">
+        
+            
+                 <p style="color: red" onClick="alert('Responda a primeira pergunta com sim ou não. E nas demais, responder conforme a pergunta. Quaisquer informações preenchidas que diferem com lógica do formulário, será ignorada (responda apenas com letras minusculas !).')">&#8727; Clique aqui para ver as instruções</p>
+                  
+              <center>
+                    <table style="background-color:#237FC1;color: white">
+                        <tr>
+                          <td><center style="font-size: 50px">&#9794;</center></td></tr>
+                        <tr>
+                          <td>
+                            
+                          1 - Você tem Barba ? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
+                            <input size="50" class="barba" type="text">
+                            <br>
+                     
+                              2 - Qual sua Altura ?
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input size="50" class="altura" type="number"><br>
+                            
+                            
+                            3 - Qual a cor de seus Olhos ?
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <input size="50" class="corDosOlhos" type="text">
+                            
+                            <br>
+                           
+                             
+                            
+                          </td> </tr>
+                         <tr><td> 
+                        <center>
+                        <button style="border-radius:3px;text-align: center;border-radius: 10px" onclick="calcularSalarioM()">Calcular Salário </button>
+                             
+                        <br>
+                            
+                            <p class="resultadoM"></p>
+                             
+                             
+                             </center>
+                         </td> </tr>
+                         
+                
+                  </table>
+                
+                
+                <br><Br>
+                
+        
+            
+                    <table class="table2" style="background-color:#E33560;color: white">
+                        <tr>
+                          <td><center style="font-size: 50px">&#9792;</center></td></tr>
+                        <tr>
+                          <td>
+                            
+                          1 - Qual é a cor do seu Cabelo ?
+                            &nbsp;
+                            <input size="50" class="cabeloF" type="text">
+                            <br>
+                     
+                              2 - Qual sua Altura ?
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input size="50" class="alturaF" type="number"><br>
+                            
+                            
+                            3 - Qual a cor de seus Olhos ?
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <input size="50" class="corDosOlhosF" type="text">
+                            
+                            <br>
+                           
+                             
+                            
+                          </td> </tr>
+                         <tr><td> 
+                        <center><button style="border-radius:3px;text-align: center;border-radius: 10px" onclick="calcularSalarioF()">Calcular Salário</button>
+                             
+                        <br>
+                            
+                            <p class="resultadoF"></p>
+                             
+                             
+                             </center>
+                         </td> </tr>
+                         
+                
+                  </table>
+                
+                
+                </center>
+                
+            
+        
+        
+        
+    </body>
+    </html>
+    

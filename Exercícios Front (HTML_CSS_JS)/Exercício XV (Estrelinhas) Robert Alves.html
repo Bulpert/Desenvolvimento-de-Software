@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Exercício XV</title>
+<style>
+
+*{
+font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+color:white;
+    }
+    
+    
+
+    
+body
+    {
+background-color: #6e0ad6;
+margin: 0px;
+    }
+    
+    
+input
+    {
+display: block;
+height: 40px;
+width: 400px;
+margin: 5px;
+border-radius: 30px;
+border: 1px solid white;
+font-size: 16pt;
+background-color: white !important;
+color: #f28000 !important;
+outline: none;
+    }
+    
+    
+label
+    {
+color: #f28000; 
+display: block;
+font-style: oblique;
+font-size: 25px;
+text-align: center;
+    }
+    
+    
+    
+    
+button
+    {
+background-color: white;
+border: none;
+padding: 10px;
+margin: 20px;
+width: 90px;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+transition-duration: 0.4s;
+cursor: pointer;
+background-color: white; 
+color: #f28000; 
+border: 2px solid pink;
+}
+    
+button:hover
+    {
+background-color: #f28000;
+color: white;
+    }
+    
+#divBodyOne
+    {
+width: 100%;
+background-color: white !important;
+height: 125px;
+text-align: center; 
+    }
+    
+    
+    
+#divBodyTwo
+    {
+width: 420px;
+margin: 40px auto 0px auto;
+    }
+    
+    
+    
+#divBodyThree
+    {
+background-color: whitesmoke !important;
+color: black !important;
+border-radius: 50px !important;
+text-align: center;
+    }
+
+  
+   
+#logo
+    {
+background-color: white;
+border: none;
+padding-left: 10px !important;
+padding-top: 10px !important;
+text-align: left !important;
+font-size: 40px !important;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+transition-duration: 0.4s;
+cursor: pointer;
+width: 99.4%;
+color: #f28000; 
+    }
+    
+</style>    
+</head>
+
+<body>
+    
+    <b id="logo"><span style="color: #6e0ad6">X</span><span style="color: #8ce563">L</span><span style="color: #f28000">O</span></b>
+    
+    
+    
+<div id="divBodyOne">         
+    
+        <button type="submit" id="send" onClick="return calcularEstrelinhas()" >Criar Estrelas</button>
+        
+        <p style="margin: 2px !important;text-align: left !important"><B style="color: #6e0ad6">Tecla ENTER <strong style="color: #8ce563">Habilitada</strong></B></p>
+        
+    </div>
+    
+      
+    
+    <div id="divBodyTwo">
+        
+        
+        <label><b style="color: #8ce563;font-size: 40px !important">Fábrica de Estrelas</b></label> 
+        <br>
+        
+        <label>Informe a quantidade das <b>Estrelinhas</b>:</label>
+        <input type="number" id="campoEstrelinhas">
+        <br>
+   
+<!--      Campo para informar o resultado Final  -->
+        
+        <div style="font-size: 20pt;margin-left: 25px !important" id="resultado">
+
+        </div>    
+            
+<!--            FIM-->
+        
+    </div>
+    
+
+</body>
+    
+    
+    
+
+<script>
+    
+//      Ativando interação com a tecla Enter 
+    document.addEventListener("keypress", function(e)
+                              
+    {
+        if(e.key === "Enter")
+        {
+            const botaoCriarEstrelas = document.querySelector("#send");
+            
+            botaoCriarEstrelas.click();
+        }
+    
+    });
+    
+    
+//    Declarando Variáveis Globais sem valor definido
+    let estrelinhas;
+    let repeat;
+    
+    
+
+//    Função para Calcular as Estrelinhas
+    
+    function calcularEstrelinhas()
+    {
+        
+        
+//    Capturando o valor inserido no Input
+        
+         estrelinhas = document.getElementById("campoEstrelinhas").value;
+        
+        
+        
+//   Resetando a função, caso o cliente queira aplicar uma nova quantia de estrelas  
+        
+        repeat = 0;
+
+        document.getElementById("resultado").innerHTML = null;
+     
+// FIM RESET
+        
+         
+        
+        
+//        IMPORTANTE: informar o valor inicial fora do loop.
+        
+         var loop = "*"; 
+      
+   
+        
+        
+        
+//        IF para processar apenas números válidos
+         if(estrelinhas>0)
+            {
+
+                
+     
+        
+//        LOOP WHILE, para repetir a quantidade de linhas/estrelinhas, conforme informado pelo usuário
+              while(repeat< estrelinhas)
+                    {
+
+
+                document.getElementById("resultado").innerHTML += loop+"<br>";
+
+                loop += "*"; // Incrementando as estrelas conforme a quantidade de repetição.
+
+                repeat++; // Incrementando o repetidor, caso contrário ele ficará no while para sempre.
+
+
+                     }//        FIM WHILE
+
+
+            }// Fim Condição Válida
+
+
+            else
+            { // Condição Inválida
+                document.getElementById("resultado").innerHTML = "<p style='text-align:center !important;margin-right: 40px !important'> Informe um número <b style='color: #8ce563'>Válido</b> <b><br><br>Maior que 0 (zero)</b></p>";
+            } // Fim condição inválida
+
+
+    }//FIM Função
+
+
+</script>
+
+    
+
+</html>

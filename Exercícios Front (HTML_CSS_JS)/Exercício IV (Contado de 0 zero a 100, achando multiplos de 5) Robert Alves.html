@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sem título</title>
+</head>
+
+<body>
+    <p id="exibir"></p>
+</body>
+    
+    
+    <script>
+   
+
+
+    var NumberMOD = 5;
+    var numberOne = 0;
+    while (numberOne <= 100){
+
+
+
+    if (numberOne % NumberMOD == 0) 
+        {
+        document.getElementById("exibir").innerHTML += "<br>"+numberOne+" é multiplo de 5<br><br>";
+        }
+    
+    else {
+        document.getElementById("exibir").innerHTML += numberOne+" não é multiplo de 5<br>";
+         }
+
+
+    numberOne++;
+   
+   
+   
+    
+    
+  
+}
+    
+    
+    
+    </script>
+</html>

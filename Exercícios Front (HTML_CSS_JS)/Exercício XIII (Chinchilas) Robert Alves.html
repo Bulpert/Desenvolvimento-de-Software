@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Exercício XIII</title>
+<style>
+
+*{
+        font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+       color:white;
+    }
+    
+    
+
+    
+body{
+        background-color: #6e0ad6;
+        margin: 0px;
+       
+    }
+    
+    
+input{
+    display: block;
+    height: 40px;
+    width: 400px;
+    margin: 5px;
+    border-radius: 30px;
+    border: 1px solid white;
+    font-size: 16pt;
+    background-color: white !important;
+    color: #f28000 !important;
+   
+    outline: none;
+    }
+label{
+       color: #f28000; 
+        display: block;
+        font-style: oblique;
+        font-size: 25px;
+    text-align: center;
+    }
+    
+    
+    
+    
+button {
+  background-color: white;
+  border: none;
+ padding: 10px;
+    margin: 20px;
+    
+  width: 90px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white; 
+  color: #f28000; 
+  border: 2px solid pink;
+ 
+}
+    
+button:hover {
+  background-color: #f28000;
+  color: white;
+    }
+    
+#divBodyOne{
+        width: 100%;
+        background-color: white !important;
+    height: 100px;
+    text-align: center;
+        
+    
+    }
+    
+    
+    
+#divBodyTwo{
+        width: 420px;
+        margin: 40px auto 0px auto;
+    
+    }
+    
+    
+    
+#divBodyThree{
+        background-color: whitesmoke !important;
+    color: black !important;
+    border-radius: 50px !important;
+    text-align: center;
+    
+    }
+
+  
+   
+    #logo{
+         background-color: white;
+  border: none;
+padding-left: 10px !important;
+        padding-top: 10px !important;
+  text-align: left !important;
+ font-size: 40px !important;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 99.4%;
+  color: #f28000; 
+  
+    }
+    
+</style>    
+</head>
+
+<body>
+     <b id="logo"><span style="color: #6e0ad6">X</span><span style="color: #8ce563">L</span><span style="color: #f28000">O</span></b>
+    <div id="divBodyOne"> 
+        
+<button id="" onClick="return calcularPrevisao()" >Calcular Previsão</button> <button id="" onClick="return limpar()" >Limpar Campos</button>
+
+        <br>
+    
+    
+    </div>
+    
+      
+    
+    <div id="divBodyTwo">
+        
+        
+       <label>Informe a Quantidade de <b>Chinchilas</b>:</label> <input type="number" id="chin">
+    <br>
+    <label>Informe a quantidade dos <b>Anos</b>:</label>
+    <input type="number" id="ano">
+   <br>
+   
+<!--      Campo para informar o resultado Final  -->
+        
+    <div style="font-size: 20pt;margin-left: 25px !important" id="resultado">
+            
+<!--            FIM-->
+    </div>
+     
+</div>
+  
+    
+<script>
+    
+    
+    let chinchilas;
+    let ano;
+    let r;
+        
+    
+//    Função para Calcular a previsão
+    
+    function calcularPrevisao()
+    {
+        
+      document.querySelector("#resultado").innerHTML = "";
+      chinchilas = document.getElementById('chin').value;
+      ano = document.getElementById('ano').value;
+        
+        
+//        LOOP FOR, para repetir conforme a quantidade de anos informados no input    
+        
+      for(r=1;r<=ano;r++)
+            {
+
+            var loop =  document.getElementById("resultado").innerHTML +="<b style=color:#8ce563>"+r+"</b>º Ano: <b style=color:#8ce563>"+ chinchilas+"</b> Chinchilas<br>";
+                
+                
+//    Atribuindo a multiplicação na variável chinchila de acordo com o ano informado    
+                
+            chinchilas *= 3;
+             }
+        
+//        FIM LOOP
+       
+        
+    }//FIM Função
+         
+    
+    
+    
+    
+//   Função para Limpar os Campos
+    
+    function limpar()
+        {
+           
+            let noChinchila;
+            vazio = document.getElementById('chin').value=null;
+            
+             let noAno;
+            vazio = document.getElementById('ano').value=null; 
+            
+            document.querySelector("#resultado").innerHTML = "";
+        
+        }
+// Fim Função Limpar
+    </script>
+</body>
+</html>

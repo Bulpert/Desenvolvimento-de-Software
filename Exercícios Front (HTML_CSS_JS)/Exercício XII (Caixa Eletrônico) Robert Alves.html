@@ -1,0 +1,540 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Exercício XII</title>
+    
+<style>
+
+*{
+        font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+       color:white;
+    }
+    
+    
+
+    
+body{
+        background-color: #6e0ad6;
+        margin: 0px;
+       
+    }
+    
+    
+input{
+    display: block;
+    height: 40px;
+    width: 400px;
+    margin: 5px;
+    border-radius: 30px;
+    border: 1px solid white;
+    font-size: 16pt;
+    background-color: white !important;
+    color: #f28000 !important;
+   
+    outline: none;
+    }
+label{
+       color: #f28000; 
+        display: block;
+        font-style: oblique;
+        font-size: 25px;
+    text-align: center;
+    }
+    
+    
+    
+    
+button {
+  background-color: white;
+  border: none;
+ padding: 10px;
+    margin: 20px;
+    
+  width: 90px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white; 
+  color: #f28000; 
+  border: 2px solid pink;
+ 
+}
+    
+button:hover {
+  background-color: #f28000;
+  color: white;
+    }
+    
+#divBodyOne{
+        width: 100%;
+        background-color: white !important;
+    height: 100px;
+    text-align: center;
+        
+    
+    }
+    
+    
+    
+#divBodyTwo{
+        width: 420px;
+        margin: 40px auto 0px auto;
+    
+    }
+    
+    
+    
+#divBodyThree{
+        background-color: whitesmoke !important;
+    color: black !important;
+    border-radius: 50px !important;
+    text-align: center;
+    
+    }
+    
+    
+    #mensagemInvalida
+    {
+        margin-left: 130px !important;
+        background-color: #6e0ad6;
+        color: white !important;
+    }
+    
+    
+    
+    
+button:hover#notaCemB {
+  background-color: #8ce563;
+  color: white;
+    }
+    
+    
+    
+button:hover#notaCinquentaB {
+  background-color: #8ce563;
+  color: white;
+    }
+    
+    
+    
+button:hover#notaDezB {
+  background-color: #8ce563;
+  color: white;
+    }
+    
+button:hover#sacar {
+  background-color: #f28000;
+  color: white;
+    }
+    
+#sacar {
+  background-color: #8ce563;
+  color: white;
+    margin-left: 700px !important;
+    margin-top: 520px !important;
+    width: 200px !important;
+    }
+    
+    
+    #buttonBuscar{
+        width: 150px;
+       
+        
+    }  
+    
+    #logo{
+         background-color: white;
+  border: none;
+padding-left: 10px !important;
+        padding-top: 10px !important;
+  text-align: left !important;
+ font-size: 40px !important;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 99.4%;
+  color: #f28000; 
+  
+    }
+    
+</style>    
+</head>
+
+    
+    
+    
+<body>
+   <b id="logo"><span style="color: #6e0ad6">X</span><span style="color: #8ce563">L</span><span style="color: #f28000">O</span></b>
+    <div id="divBodyOne"> 
+        
+      
+
+        <button id="buttonRetificar" style="border-radius: 10px;margin-left: 75px;
+        margin-right: 90px;" type="submit" onclick="return retificar()">Retificar</button>
+
+        <button id="sacar" style="border-radius: 10px;display: none" type="submit" onclick="return sacar()" onMouseMove="return verificarNotas()">Sacar</button>
+
+        <br>
+    
+    
+    </div>
+    
+      
+    
+    <div id="divBodyTwo">
+        
+        
+        <form>
+            <b><label id="label">Informe o valor do Saque:</label></b> 
+            <input id="campoSaque" onMouseMove="return verificarNotas()">
+            <br>
+       </form>
+   
+    
+<!--          Campos para informar a quantidade de notas-->
+        
+    <span id="notaDez" style="display: none">+ R$ 10</span><br>
+    <span id="notaCinquenta" style="display: none">+ R$ 50</span><br>
+    <span id="notaCem"style="display: none">+ R$ 100</span><br>
+        
+        
+    <br>
+    <br>
+       
+<!--    Campo para informar a Mensagem de Erro-->
+    <div style="text-align: center;margin-left: 30px !important;display: none" id="mensagemInvalida">MENSAGEM ERRO</div>
+        
+    
+        <Br>
+
+    <!--       Botões para adicionar manualmente os valores-->
+        <button style="display: none" id="notaDezB" type="submit" onMouseMove="return verificarNotas()" onClick="return adicionarTen()">+ R$ 10</button>
+            
+            
+        <button style="display: none" id="notaCinquentaB" onClick="return adicionarFifty()" type="submit" onMouseMove="return verificarNotas()">+ R$ 50</button>
+            
+            
+        <button style="display: none" id="notaCemB" onClick="adicionarHundred()" type="submit" onMouseMove="return verificarNotas()">+ R$ 100</button><br>
+
+        
+        
+<!--      Campo para informar o resultado Final  -->
+        
+    <div style="font-size: 20pt;margin-left: 25px !important" id="valorFinal">
+            
+    </div>
+        <br>
+        <br>
+        
+     
+</div>
+<!--    FIM HTML-->
+     
+    
+    <script> 
+   
+
+    
+//        Função Principal, Verificação
+    function verificarNotas()
+        {
+          var notaCem = 0;
+          var notaCinquenta = 0;
+          var notaDez = 0;
+
+
+         var campoSaque = document.querySelector("#campoSaque").value;
+         
+        
+            
+            
+         let getSaque;
+        
+         getSaque = document.getElementById('campoSaque').value;
+
+
+        document.getElementById('valorFinal').innerHTML = "Valor Total do saque: <b style:color:#8ce563>R$ "+getSaque+"</b>";
+            
+            
+         document.querySelector("#notaDez").innerHTML = "";
+         document.querySelector("#notaCinquenta").innerHTML = "";
+         document.querySelector("#notaCem").innerHTML = "";
+            
+//     Primiera Condição inválida 
+    if(campoSaque == 0 || campoSaque == null) {
+         document.querySelector("#mensagemInvalida").style.display = "block";
+            document.querySelector("#mensagemInvalida").innerHTML = "<b style=color:pink>Notas disponíveis para saque: <i style=color:white>R$ 10 ,R$ 50 e R$ 100</i></b>";
+            document.querySelector("#notaCem").style.display = "none";
+            document.querySelector("#notaCinquenta").style.display = "none";
+            document.querySelector("#notaDez").style.display = "none";
+                
+            document.querySelector("#notaDezB").style.display = "none";
+            document.querySelector("#notaCinquentaB").style.display = "none";
+            document.querySelector("#notaCemB").style.display = "none";
+            
+            document.querySelector("#valorFinal").style.display = "none";
+                
+            document.querySelector("#sacar").style.display = "none";
+    }     
+//       Entrando na condição válida     
+  else if(campoSaque%100 == 0 || campoSaque%50 == 0 || campoSaque%10 == 0)
+   
+     {
+        document.querySelector("#mensagemInvalida").style.display = "none";
+        document.querySelector("#mensagemInvalida").innerHTML = "";
+
+        document.querySelector("#valorFinal").style.display = "block";
+        document.querySelector("#sacar").style.display = "block";
+
+        document.querySelector("#notaDezB").style.display = "inline-block";
+        document.querySelector("#notaCinquentaB").style.display = "inline-block";
+        document.querySelector("#notaCemB").style.display = "inline-block";
+         
+         
+          
+//        While utilizado para subtrair as notas  
+    while (campoSaque > 9)    
+    {
+            
+            
+            
+            
+         // Condição 100   
+        if (campoSaque >= 100)
+        {
+             
+            
+            
+             notaCem++;
+             campoSaque = campoSaque - 100;
+
+             document.querySelector("#mensagemInvalida").style.display = "none";     
+             document.querySelector("#valorFinal").style.display = "block";     
+             document.querySelector("#notaCem").style.display = "block";
+            
+            
+             if (notaCem >1)
+                {
+                   
+                    document.querySelector("#notaCem").innerHTML = "<b style=color:#8ce563>"+ notaCem +"</b> Notas de <b style=color:#8ce563> R$ 100</b> serão necessárias para a efetuar o Saque ";         
+                }
+            if (notaCem == 1)
+                {
+                    document.querySelector("#notaCem").innerHTML = "";
+                    document.querySelector("#notaCem").innerHTML = "<b style=color:#8ce563>"+ notaCem +"</b> Nota de <b style=color:#8ce563> R$ 100</b> será necessária para a efetuar o Saque ";         
+                } 
+        }
+
+            
+            
+            
+        // Condição 50 se excluir a segunda condição, o programa irá permitir usar mais notas de 50 para os saques
+        if (campoSaque >= 50 && campoSaque < 100)    
+        {
+                
+            
+            notaCinquenta++;
+            campoSaque = campoSaque - 50;
+
+            document.querySelector("#mensagemInvalida").style.display = "none";
+            document.querySelector("#valorFinal").style.display = "block";     
+            document.querySelector("#notaCinquenta").style.display = "block";
+            
+             if (notaCinquenta >1)
+                {
+                    document.querySelector("#notaCinquenta").innerHTML = "<b style=color:#8ce563>"+ notaCinquenta +"</b> Notas de <b style=color:#8ce563> R$ 50</b> serão necessárias para a efetuar o Saque ";         
+                }
+            if (notaCinquenta == 1)
+                {
+                    document.querySelector("#notaCinquenta").innerHTML = "<b style=color:#8ce563>"+ notaCinquenta +"</b> Nota de <b style=color:#8ce563> R$ 50</b> será necessária para a efetuar o Saque ";         
+                } 
+
+        }
+            
+            
+            
+            
+         // Condição 10   
+        if (campoSaque >= 10 && campoSaque < 50)    
+        {
+            
+           
+            notaDez++;
+            campoSaque = campoSaque - 10;
+
+            document.querySelector("#mensagemInvalida").style.display = "none"; 
+            document.querySelector("#valorFinal").style.display = "block";     
+            document.querySelector("#notaDez").style.display = "block";
+            
+            
+            if (notaDez >1)
+                {
+                 document.querySelector("#notaDez").innerHTML = "<b style=color:#8ce563>"+ notaDez +"</b> Notas de <b style=color:#8ce563> R$ 10</b> serão necessárias para a efetuar o Saque ";         
+                }
+            if (notaDez == 1)
+                {
+                document.querySelector("#notaDez").innerHTML = "<b style=color:#8ce563>"+ notaDez +"</b> Nota de <b style=color:#8ce563> R$ 10</b> será necessária para a efetuar o Saque ";         
+                }
+        }
+            
+           
+                   
+            
+        }// Fechamento While 
+    
+            
+    }//Fechamento IF        
+            
+            else{
+           
+             let vazio;
+            vazio = document.getElementById('campoSaque').value=null;
+            document.querySelector("#mensagemInvalida").style.display = "block";
+            document.querySelector("#mensagemInvalida").innerHTML = "<b style=color:pink>Notas disponíveis para saque: <i style=color:white>R$ 10 ,R$ 50 e R$ 100</i>, Informe corretamente!</b>";
+            document.querySelector("#notaCem").style.display = "none";
+            document.querySelector("#notaCinquenta").style.display = "none";
+            document.querySelector("#notaDez").style.display = "none";
+                
+            document.querySelector("#notaDezB").style.display = "none";
+            document.querySelector("#notaCinquentaB").style.display = "none";
+            document.querySelector("#notaCemB").style.display = "none";
+            
+            document.querySelector("#valorFinal").style.display = "none";
+                
+            document.querySelector("#sacar").style.display = "none";
+             
+           
+        }// Fechamento Else (do IF principal)
+                   
+        
+           
+            
+      
+            
+            
+            
+            
+            
+        }// Fechamento Function Principal
+        
+        
+    function retificar()
+        {
+            let vazio;
+            vazio = document.getElementById('campoSaque').value=null;
+            
+            
+            document.querySelector("#label").style.display = "block";
+            
+            document.querySelector("#campoSaque").style.display = "block";
+            
+            
+           
+            
+           document.querySelector("#sacar").style.display = "none";
+           document.querySelector("#notaDezB").style.display = "none";
+           document.querySelector("#notaCinquentaB").style.display = "none";
+           document.querySelector("#notaCemB").style.display = "none";
+            
+            
+           document.querySelector("#mensagemInvalida").style.display = "none";
+           document.querySelector("#mensagemInvalida").innerHTML = "";
+   
+           document.querySelector("#notaCem").style.display = "none";
+           document.querySelector("#notaCem").innerHTML = "";
+            
+           document.querySelector("#notaCinquenta").style.display = "none";
+           document.querySelector("#notaCinquenta").innerHTML = "";
+            
+           document.querySelector("#notaDez").style.display = "none";
+           document.querySelector("#notaDez").innerHTML = "";
+            
+            
+         document.querySelector("#valorFinal").style.display = "none";     
+        
+        }//Fechamento Retificar
+    
+       
+        
+        
+//        Funções para acrescentar os respectivos valores
+        function adicionarTen()
+        {
+            let getSaque;
+            getSaque = document.getElementById('campoSaque').value-=10-20;
+
+            document.getElementById('valorFinal').innerHTML = "Valor Total do saque: <b style:color:#8ce563>R$ "+getSaque+"</b>";
+            
+         }
+        
+        
+        function adicionarFifty()
+        {
+            let getSaque;
+            getSaque = document.getElementById('campoSaque').value-=50-100;
+            
+
+            document.getElementById('valorFinal').innerHTML = "Valor Total do saque: <b style:color:#8ce563>R$ "+getSaque+"</b>";
+            
+         }
+        
+        
+        function adicionarHundred()
+        {
+            let getSaque;
+            getSaque = document.getElementById('campoSaque').value-=100-200;
+            
+            
+
+            document.getElementById('valorFinal').innerHTML = "Valor Total do saque: <b style:color:#8ce563>R$ "+getSaque+"</b>";
+            
+         }
+        
+        
+        
+//        Função Sacar
+        function sacar()
+        {
+             document.querySelector("#campoSaque").style.display = "none";
+            
+            document.querySelector("#label").style.display = "none";
+         
+           document.querySelector("#notaDezB").style.display = "none";
+           document.querySelector("#notaCinquentaB").style.display = "none";
+           document.querySelector("#notaCemB").style.display = "none";
+            
+            
+           document.querySelector("#mensagemInvalida").style.display = "none";
+           document.querySelector("#mensagemInvalida").innerHTML = "";
+   
+           document.querySelector("#notaCem").style.display = "none";
+           document.querySelector("#notaCem").innerHTML = "";
+            
+           document.querySelector("#notaCinquenta").style.display = "none";
+           document.querySelector("#notaCinquenta").innerHTML = "";
+            
+           document.querySelector("#notaDez").style.display = "none";
+           document.querySelector("#notaDez").innerHTML = "";
+            
+            
+            
+           let getSaque;
+           getSaque = document.getElementById('campoSaque').value;
+            
+           document.querySelector("#valorFinal").style.display = "block";
+           document.getElementById("valorFinal").innerHTML = "Saque no valor de: <b style=color:#8ce563>R$ "+getSaque+"</b> efetuado com sucesso!!!";
+        
+           document.querySelector("#sacar").style.display = "none";
+        }// Fim da Função sacar
+        
+        
+        //FIM SCRIPT
+    
+    </script>
+</body>
+</html>

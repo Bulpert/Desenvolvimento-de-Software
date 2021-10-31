@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Exercício IX</title>
+        <style>
+            *{
+                color: white !important;
+            }
+        </style>
+        
+
+          <script type="text/javascript">
+          
+               
+              
+           
+             function salarioGenero(genero,salario){
+              
+              var genero = prompt("Qual seu Gênero ?");
+     
+            var salario = 0;
+                 
+              switch (genero)
+                {
+                        
+                    case "FEMININO":
+                    case "feminino":
+                    salario = 10000;     break;
+                        
+                        
+                    case "MASCULINO":
+                    case "masculino":
+                    salario = 500;     break;
+                        
+                    
+                    default: salario = 0;
+                   
+                    
+                }
+            
+                    
+                    if( salario == 0){
+                    document.write("Gênero informado está incorreto<br>");  
+                    }
+                else{
+                document.write("Dado o Gênero informado '" +genero+ "', o Salário é de "+  salario+"<br>");}
+             }
+
+           salarioGenero();
+              
+       
+       
+        </script>
+    </head>
+<!--
+    Exercício:
+
+Escreva uma function que pergunte o calcule o salário de pessoa seguindo a seguinte regra:
+Se o genero da pessoa for FEMININO, o salário deverá ser 10000 (10 mil reais).
+Se o genero for MASCULINO, o salário deverá ser 500.
+Ao final, exibir o resultado em tela assim:
+“Dado o genero informado {genero}, o salário é de {salario}”.
+Pergunte o genero com o prompt.
+-->
+    
+    <body style="background-color: black">
+    </body>
+</html>

@@ -1,0 +1,214 @@
+<html>
+<head>
+    <title>Exercício X</title>
+</head>
+<style>
+    *{
+        font-family: "eco vera sans";
+       color:white;
+    }
+    
+    
+
+    
+body{
+        background-color: black;
+      
+    }
+    
+#divForm{
+        width: 420px;
+        margin: 40px auto 0px auto;
+    }
+    
+input{
+    display: block;
+    height: 40px;
+    width: 400px;
+    margin: 5px;
+    border-radius: 30px;
+    border: 1px solid black;
+    font-size: 16pt;
+    background-color: white;
+    color: indianred;
+    outline: none;
+}   
+label{
+       color: white; 
+        display: block;
+    }
+    
+button{
+        background-color: white;
+        color: black;
+   
+    }
+    
+    
+    
+button {
+  background-color: orange;
+  border: none;
+  color: black;
+  width: 100px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: black; 
+  color: orange; 
+  border: 2px solid orange;
+}
+    
+button:hover {
+  background-color: orange;
+  color: white;
+    }
+    
+#smallAge{
+        font-size: 7.0pt;
+        color: orange;
+        margin-left: 160px;
+    }
+</style>
+<body>
+<div id="divForm">
+    <h1 style="color:orange;padding-left: 30px ">Formulário de Cadastro</h1>
+    <form>
+        
+        <label>Nome:</label> 
+        <input  type="text" id="name"><br>
+        
+        <label>Idade:</label> <input   type="number" id="age"><u id="smallAge"></u><br>
+        
+        <label>E-mail:</label> <input   type="email" id="email"><br>
+        
+        <label>Senha:</label> <input   type="password" id="password"><br>
+        
+        <label>Confirme sua Senha:</label> <input   type="password" id="confPassword"><br>
+    
+        
+        
+        
+        <button style="border-radius: 10px" type="reset">Limpar</button>
+
+    </form>
+    
+    
+     <button style="border-radius: 10px;margin-top: -39px;margin-left: 305px" type="submit" onclick="return processingForm()">Cadastrar</button>
+
+   <center>
+       <br>
+        <div style="back" id="result">
+            
+        </div>
+</center>
+
+    <script>
+
+//    Função para pegar as informações pelos ID's          
+
+        
+        function getVar(IdElement)
+        {
+            return document.getElementById(IdElement).value;
+        }
+        
+//            FIM FUNCTION
+        
+        
+        
+        
+//      Exibindo as possíveis mensagens de Erros/Sucesso        
+        
+        
+        function printError(msgError)
+        {
+            document.getElementById("result").innerHTML = 
+                "<span style='color:orange; font-size:14pt;'>" + 
+                    msgError + "</span>";
+           
+        }
+        
+        
+         function printInfoForm(msgSucess)
+        {
+            document.getElementById("result").innerHTML ="<br><b style='color:green'>Você foi cadastrado com sucesso!</b><br><br>Confira os dados enviados abaixo:<br>"+ msgSucess;
+           
+        }
+        
+//            FIM FUNCTION's
+        
+        
+    
+//        Processando e Condicionando Dados dos Formulário
+        
+       
+
+        function processingForm()
+        {
+            var name = getVar("name");
+            var age = getVar("age");
+            var email = getVar("email");
+            var password = getVar("password");
+            var confPassword = getVar("confPassword");
+
+            
+            
+            
+            
+            if(name == "" || age == "" || email == "" || password == "")
+            {
+                printError("Preenche todos os campos!");
+                return false;
+                
+            }
+            
+          
+            
+            else{
+                
+                //                Verificando se o usuário é maior de 18 anos
+                
+               if(age <= 17){
+                    var smallAge = document.getElementById("smallAge").innerHTML="Necessário ser maior de idade para prosseguir com o cadastro!";
+                    return false;
+                   
+                }
+                
+                 
+                  //                Verificando se o e-mail tem @
+                
+               if(email.indexOf("@") == -1){
+                    printError("Campo de e-mail inválido, inclua o @ para prosseguir!");
+                    return false;
+                }
+                
+//                Verificando se a confirmação de senha está correta
+                
+                if(password != confPassword)
+                {
+                    printError("A confirmação da senha está incorreta!");
+                    return false;
+                }
+            }
+
+            var printInfo = "";
+            printInfo += "<br> Nome: </b>" + name;
+            printInfo += "<br> Idade: " + age;
+            printInfo += "<br> Email: " + email;
+            printInfo += "<br> Senha: *********";
+
+            printInfoForm(printInfo);
+
+            return true;
+        }
+//            FIM FUNCTION
+        
+        
+    </script>
+</div>
+</body>
+
+</html>
