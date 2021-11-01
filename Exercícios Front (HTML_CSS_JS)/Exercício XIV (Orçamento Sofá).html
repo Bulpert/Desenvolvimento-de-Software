@@ -1,0 +1,485 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Exercício XIV</title>
+    
+<style>
+
+*{
+font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+color:white;
+    }
+    
+    
+
+    
+body
+    {
+background-color: #202020;
+margin: 0px;
+       
+    }
+    
+    
+input
+    {
+display: block;
+height: 40px;
+width: 400px;
+margin: 5px;
+border-radius: 30px;
+border: 1px solid white;
+font-size: 16pt;
+background-color: white !important;
+color: #f28000 !important;
+outline: none;
+    }
+    
+    
+label
+    {
+color: #f28000; 
+display: block;
+font-style: oblique;
+font-size: 25px;
+text-align: center;
+    }
+    
+    
+    
+    
+button
+    {
+background-color: white;
+border: none;
+padding: 10px;
+margin: 20px;
+width: 90px;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+transition-duration: 0.4s;
+cursor: pointer;
+background-color: white; 
+color: #f28000; 
+border: 2px solid pink;
+border-radius: 15px;
+    }
+    
+button:hover
+    {
+background-color: #f28000;
+color: white;
+    }
+    
+#divBodyOne
+    
+    {
+width: 100%;
+background-color: white !important;
+height: 100px;
+text-align: center;
+    }
+    
+    
+    
+#divBodyTwo
+    {
+width: 600px;
+margin:auto;
+    
+    }
+    
+    
+    
+#divBodyThree
+    {   
+background-color: whitesmoke !important;
+color: black !important;
+border-radius: 50px !important;
+text-align: center;
+    }
+    
+    
+button:hover#calcular
+    {
+background-color: #f28000;
+color: white;
+    }
+    
+#calcular
+    {
+background-color: #8ce563;
+color: white;
+
+width: 200px !important;
+    }
+    
+    
+
+
+</style>    
+</head>
+
+    
+    
+    
+<body>
+    <b style="font-size: 30px" id="logo"><span style="color: #202020">C</span><span style="color: #8ce563">D</span><span style="color: #f28000">S</span></b>
+  
+    
+    <div id="divBodyOne"> 
+        
+        <table width="100%">
+            <tr>
+                <td style="width: 41%;text-align: right">
+                    <button  id="buttonCalcular" style="border-radius: 10px" type="submit" onclick="return calcular()">Calcular
+                    </button>
+                </td>
+           
+            
+                <td style="">
+                    <button id="buttonRetificar" style="border-radius: 10px;margin-left: 75px;
+                    margin-right: 90px;" type="submit" onclick="return retificar()">Retificar
+                    </button>
+                </td> 
+            
+                 <td style="text-align: right">
+                     <a href='https://github.com/Bulpert/Desenvolvimento-de-Software/tree/main/Exerc%C3%ADcios%20Front%20(HTML_CSS_JS)' target='_blank'>
+                     <img style="width: 100px;text-align: right" src='https://i.postimg.cc/W4LNL8VT/github-logo-1068x601.jpg' border='0' alt='github-logo-1068x601'>
+                     </a>
+                 </td> 
+            </tr>
+        </table>
+        
+    </div>
+    
+      
+    
+<div id="divBodyTwo">
+
+            <br>
+      <div id="inputTitle">
+        <form>
+          <b>
+              <label style="font-size: 17pt" id="label">Informe a <strong>quantidade</strong> de lugares que deseja para o sofá:
+              </label>
+          </b>
+
+          <br>
+
+          <input style="margin-left:100px "  id="inputSofa"> 
+          <br>
+        </form>
+      </div>
+        
+  
+        
+    
+      
+     <!--       Botões para informar o retrátio -->
+            
+   <div style="text-align: center;display: none" id="blocoRetratio">
+            <label><strong>Tipo Retrátio?</strong></label>
+
+
+            <button style="" id="btnRetratioYes" onClick="incluirRetratio()" type="submit">Sim
+            </button>
+
+            <button style="" id="btnRetratioNo" onClick="removerRetratio()" type="submit">Não
+            </button>
+            
+    </div>   
+            
+        
+        
+        <!--       Botões para informar as zonas -->
+            
+    <div style="text-align: center;display: none" id="blocoZonas">
+            
+         <label><strong>Informe sua localização para calcular o frete:</strong>
+         </label>
+                
+            
+         <button style="font-size: 10pt" id="btnZonaNorte" type="submit" onClick="return zonaNorte()">Zona Norte
+         </button>
+            
+         <button style="font-size: 10pt" id="btnZonaSul" type="submit" onClick="return zonaSul()">Zona Sul
+         </button>
+            
+         <button style="font-size: 10pt" id="btnZonaOeste" type="submit" onClick="return zonaOeste()">Zona Oeste
+         </button>
+            
+         <button style="font-size: 10pt" id="btnBaixada" type="submit" onClick="return baixada()">Baixada
+         </button>
+            
+  </div>
+        
+<!--    Campos que informarão sobre os detalhes do orçamento-->
+    
+  <div style="text-align: center;display: none" id="blocoResumo">
+            
+        <p id="seeSofa"></p>
+            
+        <p id="seeRetratio"></p>
+            
+        <p id="seeZonas"></p>
+               
+  </div>
+        
+    
+<!--    Botão Orçamento-->
+    
+         <button style=";display: none;margin-left: 200px" id="calcular" type="submit" onClick="return calcularOrcamento()">Visualizar Orçamento
+         </button>
+        
+    
+<!--      Campo para informar o resultado Final  -->
+        
+            
+  <div style="font-size: 20pt;text-align: center" id="valorFinal">
+
+  </div> 
+    
+  
+</div>
+<!--    FIM HTML-->
+     
+
+    
+<!--INICIO JS-->
+    <script> 
+       
+//      Declarando a Variável Global (sem valor definido), para podermos trabalhar com ela em todas as funções
+        
+    let totalOrcamento;
+        
+          
+ 
+//        Função para pegar o valor do input e Inicializa-lo na variável global
+        
+function calcular()
+        {
+        
+        // Capturando valor digitado no input
+            
+         var inputSofa = document.querySelector("#inputSofa").value;
+            
+            
+            
+        // Criando uma condição para aceitar apenas números válidos
+         if(inputSofa>0)
+            {
+         
+                
+            // Atribuindo valor do input x 40 na variável global  
+            totalOrcamento = inputSofa*40;
+
+
+            // Função para exibir o valor percorrido na variável global durante o processo
+             visualizandoValorOrcamento();
+
+
+            // Gravando essa mensagem para aparecer no final
+            document.getElementById('seeSofa').innerHTML = "Quantidade de Lugar: <b style='color:#8ce563'>"+inputSofa+"x</b>";
+
+            // Fazendo o próximo "bloco" aparecer
+            document.querySelector("#blocoRetratio").style.display = "block";
+                
+            }
+        else
+            {// Entrando na condição inválida e exibindo mensagem de "erro"
+                    
+                document.getElementById('valorFinal').innerHTML = "<b>Informe um número válido!</b>";
+                    
+                document.querySelector("#blocoRetratio").style.display = "none";
+            }
+                
+        }
+        
+        // Função para aplicar os 20$ para cada Lugar no sofá informado
+function incluirRetratio()
+        {
+        let xLugar;
+        
+         xLugar = document.getElementById('inputSofa').value;
+    
+            
+         var pricexLugar = xLugar *40;
+         var retratio = xLugar *20 + pricexLugar;
+         pricexLugar = retratio;
+        
+         totalOrcamento = pricexLugar;
+            
+         // Função para exibir o valor percorrido na variável global durante o processo
+         visualizandoValorOrcamento();
+            
+            
+        
+         // Fazendo aparecer e desaparecer,para visualizarmos na tela apenas o necessário 
+         document.getElementById('seeRetratio').innerHTML = "Tipo Retrátio: <b style='color:#8ce563'>Sim</b>";
+         document.querySelector("#blocoRetratio").style.display = "none";
+         document.querySelector("#inputTitle").style.display = "none";
+         document.querySelector("#blocoZonas").style.display = "block";
+         document.querySelector("#buttonCalcular").style.display = "none";
+        
+        }
+        
+        
+        
+function removerRetratio()
+        {
+           
+            
+        // Função para exibir o valor percorrido na variável global durante o processo
+         visualizandoValorOrcamento();
+             
+           
+        // Guardando informação para aparecer no final
+         document.getElementById('seeRetratio').innerHTML = "Tipo Retrátio: <b style='color:#8ce563'>Não</b>";
+          
+            
+         // Fazendo aparecer e desaparecer,para visualizarmos na tela apenas o necessário
+         document.querySelector("#blocoRetratio").style.display = "none";
+         document.querySelector("#inputTitle").style.display = "none";
+         document.querySelector("#blocoZonas").style.display = "block"; 
+         document.querySelector("#buttonCalcular").style.display = "none";
+        }
+
+        
+        
+ function zonaNorte()
+        {
+            
+        // Incrementando o valor frete dessa zona
+        totalOrcamento += 25;
+            
+        // Guardando informação para aparecer no final
+        document.getElementById('seeZonas').innerHTML = "Zona: <b style='color:#8ce563'>Norte</b>";
+            
+            
+        // Função para exibir o valor percorrido na variável global durante o processo
+        visualizandoValorOrcamento();
+            
+            
+            
+        // Fazendo aparecer e desaparecer,para visualizarmos na tela apenas o necessário
+        document.querySelector("#blocoZonas").style.display = "none";
+        document.querySelector("#calcular").style.display = "block";
+         }
+        
+function zonaSul()
+        {
+            
+        // Incrementando o valor frete dessa zona
+        totalOrcamento += 35;
+            
+        // Guardando informação para aparecer no final
+        document.getElementById('seeZonas').innerHTML = "Zona: <b style='color:#8ce563'>Sul</b>";
+            
+            
+        // Função para exibir o valor percorrido na variável global durante o processo
+        visualizandoValorOrcamento();
+            
+            
+        // Fazendo aparecer e desaparecer,para visualizarmos na tela apenas o necessário
+        document.querySelector("#blocoZonas").style.display = "none";
+        document.querySelector("#calcular").style.display = "block";
+        }
+        
+function zonaOeste()
+        {
+            
+        // Incrementando o valor frete dessa zona
+        totalOrcamento += 30;
+            
+            
+        // Guardando informação para aparecer no final
+        document.getElementById('seeZonas').innerHTML = "Zona: <b style='color:#8ce563'>Oeste</b>";
+            
+            
+        // Função para exibir o valor percorrido na variável global durante o processo
+         visualizandoValorOrcamento();
+            
+            
+         // Fazendo aparecer e desaparecer,para visualizarmos na tela apenas o necessário
+         document.querySelector("#blocoZonas").style.display = "none";
+         document.querySelector("#calcular").style.display = "block";
+            
+        }
+        
+function baixada()
+        {
+            
+        // Incrementando o valor frete dessa zona
+        totalOrcamento += 30;
+            
+             
+        document.getElementById('seeZonas').innerHTML = "Zona: <b style='color:#8ce563'>Baixada</b>";
+            
+        // Função para exibir o valor percorrido na variável global durante o processo
+        visualizandoValorOrcamento();
+            
+            
+        // Fazendo aparecer e desaparecer,para visualizarmos na tela apenas o necessário   
+        document.querySelector("#blocoZonas").style.display = "none";
+        document.querySelector("#calcular").style.display = "block";
+            
+        }
+ 
+//        Função para zerar os valores e reeorganizar a parte visual do layout
+        
+function retificar()
+        {
+            
+            
+        totalOrcamento = null;
+        document.querySelector("#inputSofa").value= null;
+        document.getElementById('valorFinal').innerHTML = "";   
+        
+        var inputSofa = document.querySelector("#blocoResumo").style.display = "none";
+        
+        document.querySelector("#calcular").style.display = "none";
+        document.querySelector("#blocoZonas").style.display = "none";
+        document.querySelector("#blocoRetratio").style.display = "none";
+        document.querySelector("#buttonCalcular").style.display = "block"; 
+        document.querySelector("#buttonCalcular").style.marginLeft = "570px"; 
+        document.querySelector("#inputTitle").style.display = "block"; 
+        
+        }
+        
+//        Função para calcular o Orçamento final e suas ultimas condiderações
+       
+ function calcularOrcamento()
+        {
+        
+        if(totalOrcamento<250)
+             {
+                var totalOrcamentoFinal = totalOrcamento +5;
+                document.getElementById('valorFinal').innerHTML = "<b>Seu Orçamento ficou R$ <b style='color: #8ce563'>"+totalOrcamento+"</b> + a Taxa de $ <b style='color: #8ce563'>5,00</b> <b>fechando em um total de</b> </b>R$ <b style='color: #8ce563'>"+totalOrcamentoFinal+"</b>";
+             }
+            
+        else
+            {
+                document.getElementById('valorFinal').innerHTML = "<b>Orçamento Final: R$</b>  <b style='color: #8ce563'>"+totalOrcamento+"</b>";
+            }
+            
+            
+        document.querySelector("#calcular").style.display = "none";
+        document.querySelector("#blocoResumo").style.display = "block"; 
+        }
+        
+        
+        
+//        Função para acompanharmos a variável global
+        
+     function visualizandoValorOrcamento()
+        {
+        
+        
+        document.getElementById('valorFinal').innerHTML = "<b> Calculando:</b> <b style='color:#8ce563'>R$ "+ totalOrcamento+"</b>";
+        }
+    </script>
+</body>
+</html>
