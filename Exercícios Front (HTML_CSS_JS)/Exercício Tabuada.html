@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    exercicio 4.4
+  </title>
+  <style type="text/css">
+  </style>
+  </head>
+
+<body>
+  <h2> Programa Tabuada <hr> </h2>
+
+  <p>
+    Número: <input type="number" id="numeroTabuada"><br>
+    Quantidade de Repetição: <input type="number" id="xRepeat">
+  </p>
+   
+    
+  
+  <p>
+      <button type="submit" id="mostrar" onClick="return revelarTabuada()">Mostrar Tabuada</button>
+  </p>
+<!--      Você não tinha vinculado a função no botão, e o evento "onclick" se declara "onClick" com C maiúsculo (fique atento a respeito das cases sensitives, uma letra maiuscula ou minuscula errada pode dar pau no codigo inteiro-->
+
+  <div id="resultado">
+      
+<!--O ID da div estava fora de aspas-->
+
+  </div>
+    
+
+<!--Não há necessidade de incluir diversas divs, você só precisa de um campo, quem irá fazer a repetição é a função que você criou no Java Script-->
+  
+</body>
+    
+<script>
+
+//    Declarando a Função
+    
+function revelarTabuada()
+    {
+            // pegando os valores informado nos inputs e atribuindo nas váriaveis que estão sendo declaradas abaixo
+            
+           var repetidor = document.getElementById("xRepeat").value;
+           var tabuada = document.getElementById("numeroTabuada").value;
+              
+              
+            //Zerando o valor do 'id="resultado"', para podermos informar novos valores na tela
+           document.getElementById("resultado").innerHTML = null;
+              
+            // Condição para permitir apenas numeros válidos
+            if(repetidor > 0 && tabuada >0)
+                {
+
+            //Utilizando o for para repetir de acordo com o valor da variável 'repetidor'
+                for(var contador = 1; contador <= repetidor; contador++)
+                  {
+
+
+            //        Atribuindo os valores na tela no 'id="resultado"'
+                     document.getElementById("resultado").innerHTML += tabuada+" x "+contador+": <b style='color:blue'>"+ tabuada*contador+"</b><br>"; 
+
+                      //Inclui um CSS dentro do Java Script, para deixar o resultado em azul
+                      // incluí um <br> para quebrar as linhas conforme a repetição do for
+                  }
+                
+           }else
+               {// informando um mensagem caso o valor digitado seja inválido
+                   document.getElementById("resultado").innerHTML = "Informe um número válido";
+               }
+                
+    }
+      
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sem título</title>
+</head>
+
+<body>
+</body>
+    
+    
+    
+    <script>
+    
+   
+                var country = ["Japão","China","Estados Unidos","Brasil","Argentina"];
+                
+                // Tirando a primeira posição do vetor (japão) e realocando os demais.
+                country.shift();
+                
+                
+                // Incluindo um novo elemento no vetor, na primeira posição e impurrando os demais para trás
+                country.unshift("Chile");
+                
+        
+                for(var r=0; r < country.length; r++)
+                    {
+                        if(country[r] == "Brasil")
+                            { 
+                            console.log(country[r]+" é o melhor país");
+                            }
+                        else
+                            { 
+                            console.log(country[r]);
+                            }
+                    }
+               
+                
+                
+                
+                
+            
+    
+    
+    
+    </script>
+</html>
