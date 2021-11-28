@@ -11,7 +11,12 @@
         <br>
     
         <br>
+        
     
+<!--             Botão que aplicará a função Adicionar Pacientes-->
+         <button id="adicionar" onClick="adicionar()">Adicionar</button>
+    
+        
     
 <!--             Botão que aplicará a função Remover Primeiro Paciente-->
          <button id="removerPrimeiro" onClick="removerPrimeiro()">Remover Primeiro</button>
@@ -25,10 +30,7 @@
          <button id="filtrar" onClick="filtrar ()">Filtrar</button>
     
     
-    
-<!--              Botão que aplicará a função Adicionar Pacientes-->
-         <button id="adicionar" onClick="adicionar()">Adicionar</button>
-    
+
         <br>
     
 <!--              ID que receberá os daods dos Pacientes-->
@@ -46,28 +48,33 @@
     
 var pacientes = [];
     
-
-
-function removerUltimo()
+    
+    
+    
+function adicionar()
         {
             
-        
-
 //          Limpando o resultado 
             document.getElementById('exibirPacientes').innerHTML = "";
             
-            
-//          Método para remover o ultimo elemento do Vetor
-            pacientes.pop();
+            var paciente = document.getElementById('pacientes').value;
             
             
+            // não pode iniciar undefined
+            pacientes.unshift("");
+        
+            
+            // Atribuindo o valor informado no input na respectiva posição do vetor
+            pacientes [0] = paciente;
+            
+        
             
 //          Função para exibir os Pacientes
             exibirPacientes ();
-            
-        }        
-        
-        
+        }
+
+
+
         
         
 function removerPrimeiro()
@@ -90,29 +97,27 @@ function removerPrimeiro()
         }
         
         
-function adicionar()
+
+function removerUltimo()
         {
             
+        
+
 //          Limpando o resultado 
             document.getElementById('exibirPacientes').innerHTML = "";
             
-            var paciente = document.getElementById('pacientes').value;
+            
+//          Método para remover o ultimo elemento do Vetor
+            pacientes.pop();
             
             
-            // não pode iniciar undefined
-            pacientes.unshift("");
-        
-            
-            // Atribuindo o valor informado no input na respectiva posição do vetor
-            pacientes [0] = paciente;
-            
-        
             
 //          Função para exibir os Pacientes
             exibirPacientes ();
-        }
+            
+        }        
         
-        
+             
         
 
         
@@ -129,11 +134,11 @@ function filtrar ()
                     
                     
             var paciente = document.getElementById('pacientes').value;        
-                    
+            // Usando o método indexOf() para localizar pelo menos 1 caractere do nome do paciente paciente (para filtrar corretamente)      
             if(pacientes[i].indexOf(paciente)!= -1)
                {
                 document.getElementById('exibirPacientes').innerHTML += "Posição: "+i+" Paciente: "+pacientes[i]+"<br>";
-//               verificador = 1;
+
                }
                 
                
@@ -141,7 +146,7 @@ function filtrar ()
                     
                 }
             
-//            alert(verificador);
+
         }
         
         
@@ -165,62 +170,6 @@ function exibirPacientes ()
             
         }    
     
-    
-    
-    
-    
-//function adicionar()
-//        {
-//            
-//            
-//            var paciente = document.getElementById('pacientes').value;
-//            
-//            
-//            
-//            
-//        
-//            pacientes [a] = paciente;
-//            
-//            
-//
-//            
-//            console.log(pacientes[a]);
-//            
-//            a++;
-//            
-//        }
-        
-        
-        
-        
-        
-//        
-//                var country = ["Japão","China","Estados Unidos","Brasil","Argentina"];
-//                
-//                // Tirando a primeira posição do vetor (japão) e realocando os demais.
-//                country.shift();
-//                
-//                
-//                // Incluindo um novo elemento no vetor, na primeira posição e impurrando os demais para trás
-//                country.unshift("Chile");
-//                
-//        
-//                for(var r=0; r < country.length; r++)
-//                    {
-//                        if(country[r] == "Brasil")
-//                            { 
-//                            console.log(country[r]+" é o melhor país");
-//                            }
-//                        else
-//                            { 
-//                            console.log(country[r]);
-//                            }
-//                    }
-//               
-//                
-//                
-                
-                
             
     
     
