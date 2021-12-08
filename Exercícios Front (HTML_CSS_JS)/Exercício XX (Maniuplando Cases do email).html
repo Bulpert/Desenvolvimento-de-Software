@@ -1,0 +1,75 @@
+<html>
+
+
+<body>
+
+
+<div>
+    Digite seu email: <textarea id="texto"></textarea> <button id="btnok" onclick="return validarFormulario()">Enviar informação</button>
+
+</div>
+
+<hr>
+
+<div id="divResultado">
+
+</div>
+
+</body>
+<script type="text/javascript">
+
+/*
+
+indexOf     : Localiza um texto retornando a posicao onde encontrou. Se nao achou, retorna - 1
+lastIndexOf : Localiza um texto retornando a ULTIMA posicao que ele foi encontrado
+split       : Quebra o texto em um vetor, baseado em um caracter 
+substring   : Corta um texto a partir de uma posicao de inicio e posicao final
+substr      : Corta um texto a partir de uma posicao de inicio e tamanho
+toUpperCase : Escrever o texto todo maiusculo
+toLowerCase : Escrever o texto todo minusculo
+
+*/
+
+    function validarFormulario()
+    {
+       
+        
+       
+        
+       
+       
+        var textoInformado = document.getElementById("texto").value.toString();
+        
+        
+        
+        var quebras = textoInformado.split(' ');
+        var novoTexto = "";
+
+        for(i=0;i<quebras.length;i++)
+        {
+            if(quebras[i].length > 3)
+            {
+                var primeiraLetra = quebras[i].substring(0,1).toUpperCase();
+                var palavraResto = quebras[i].substr(1).toLowerCase();
+                var palavraCompletaNova = primeiraLetra + palavraResto;
+
+                novoTexto += " " + palavraCompletaNova;
+            }
+            else{
+                novoTexto += " " + quebras[i].toLowerCase();
+            }
+        }
+        
+        exibirResultado(novoTexto);
+
+        return true;
+    }
+
+    function exibirResultado(msg)
+    {
+        document.getElementById("divResultado").innerHTML = msg;
+    }
+
+</script>
+
+</html>
