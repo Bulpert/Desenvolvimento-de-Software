@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AULA 021</title>
+</head>
+<body>
+    <h1>AULA 021</h1>
+
+    <p>
+                
+        Digite sua senha: <input type="text" id="senha" />
+
+        <button id="btExibir" onclick="detectarSenhasFracas();">Avaliar senha</button>    
+    
+    </p>
+
+    <div id="outResultado"></div>
+
+    <hr>
+
+    <div id="politicaSeguranca">
+        A sua senha deve atender os requisitos abaixo:
+        <ul>
+            <li>- Não pode ter menos que 10 caracteres;</li>
+            <li>- Deve ter no mínimo 2 números</li>
+            <li>- Deve ter no mínimo 2 letras minusculas</li>
+            <li>- Deve ter no minimo 2 letras maiusculas</li>
+            <li>- Deve ter no minimo 2 simbolos especiais * ou _ ou ( ou ) ou / ou \</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+
+        var tamanhoMinimoSenha = 8;
+        var senhasMuitoFacil = ["123456", "asdfasdf", "aaaaaaa", "9876543", "bitcoin"];
+
+        function detectarSenhasFracas()
+        {
+
+            var senhaDigitada = document.getElementById("senha").value;
+            
+            for(j=0; j<senhasMuitoFacil.length; j++)
+            {
+                if(senhaDigitada.indexOf(senhasMuitoFacil[j]) != -1)
+                {
+                    escreverResultado("A senha você digitou contêm uma palavra muito fácil ("+ senhasMuitoFacil[j] +")");
+                    return;
+                }
+            }
+
+            if(senhaDigitada.length < tamanhoMinimoSenha)
+            {
+                escreverResultado("A senha digitada deve ter no mínimo "+ tamanhoMinimoSenha +" caracteres");
+                return;
+            }
+
+            var msg = "";
+            var totalNumero = 0;
+            var totalLetraMaiuscula = 0;
+            var totalLetraMinuscula = 0;
+            var totalSimbolo = 0;
+            var simbolosAceitos = "*_()/\\@"; // * ou _ ou ( ou ) ou / ou \
+
+            for(i=0; i<senhaDigitada.length; i++)
+            {
+                var tipoDeterminado = "";
+                var letraDaVez = senhaDigitada.charAt(i);
+
+                if(isNaN(letraDaVez) == false)
+                {
+                    totalNumero++;
+                }
+                else{
+                    if(simbolosAceitos.indexOf(letraDaVez) != -1)
+                    {
+                        totalSimbolo++;
+                    }
+                    else{
+                        if(letraDaVez.toLowerCase() == letraDaVez)
+                        {
+                            totalLetraMinuscula++;
+                        }
+                        else{
+                            totalLetraMaiuscula++;
+                        }
+                    }
+                }
+            }
+
+            if(totalNumero < 2)
+            {
+                escreverResultado("Deve ter pelo menos 2 números");
+                return;
+            }
+
+            if(totalLetraMaiuscula < 2)
+            {
+                escreverResultado("Deve ter pelo menos 2 letras maiusculas");
+                return;
+            }
+
+            if(totalLetraMinuscula < 2)
+            {
+                escreverResultado("Deve ter pelo menos 2 letras minusculas");
+                return;
+            }
+
+            if(totalSimbolo < 2)
+            {
+                escreverResultado("Deve ter pelo menos 2 simbolos desses aqui ó: " + simbolosAceitos);
+                return;
+            }
+
+            escreverResultado("Senha OK!");
+        }
+
+        function escreverResultado(mensagem)
+        {
+            document.getElementById("outResultado").innerHTML = mensagem;
+        }
+
+    </script>
+
+</body>
+</html>

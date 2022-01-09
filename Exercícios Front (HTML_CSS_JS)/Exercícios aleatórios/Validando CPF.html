@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Validando CPF</title>
+</head>
+
+<body>
+	
+	
+<label>Informe seu CPF: </label><input id="cpf" onMouseOut="return validarCPF()" >	
+	
+	
+	
+<div id="resultado"></div>
+	
+	
+<script>
+	
+	
+	
+function validarCPF (valorInformado){
+
+	var primeiroCaractere = 0
+	var segundoCaractere = 0
+	var contador = 10
+	var numero = 0
+	var valorInvertido =''
+	var valorInformado = document.getElementById('cpf').value;
+	
+	
+	for(var i = 0;i < valorInformado.length;i++) {
+		
+		if(isNaN(valorInformado[i]) == false) {
+			valorInvertido += valorInformado[i]
+			
+			
+			
+			
+			numero += valorInformado[i] * contador
+			
+			contador--;
+			
+			if(contador == 1){
+				break
+			}
+		} 
+		
+	}
+	
+	if(numero % 11 < 2){
+		primeiroCaractere = 0
+	} else {
+		primeiroCaractere =  11 - (numero % 11)
+	}
+	
+	
+	
+	document.getElementById('resultado').innerHTML = `
+	
+	Valor Invertido: ${valorInvertido}
+
+	<br>
+
+	Valor somado: ${numero}
+
+	<br>
+
+	Primeiro caractere: ${primeiroCaractere}
+
+`
+}
+
+
+</script>
+</body>
+</html>
