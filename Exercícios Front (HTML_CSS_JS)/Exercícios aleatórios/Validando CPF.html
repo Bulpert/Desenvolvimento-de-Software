@@ -19,56 +19,159 @@
 	
 	
 	
-function validarCPF (valorInformado){
+function validarCPF (cpfInformado){
 
-	var primeiroCaractere = 0
-	var segundoCaractere = 0
+	var cpfInformado = document.getElementById('cpf').value;
+	var apenasNumeroCPF =''
+	
+	
+	var penultimaPosicao = 0
+	var penultimoNumero = 0
+	var somaDoPenultimoValor = 0
+	
 	var contador = 10
-	var numero = 0
-	var valorInvertido =''
-	var valorInformado = document.getElementById('cpf').value;
 	
 	
-	for(var i = 0;i < valorInformado.length;i++) {
+	
+	
+	
+	
+	
+	
+	for(let i = 0;i < cpfInformado.length;i++) {
 		
-		if(isNaN(valorInformado[i]) == false) {
-			valorInvertido += valorInformado[i]
+		if(isNaN(cpfInformado[i]) == false) {
 			
 			
+			apenasNumeroCPF += cpfInformado[i]
+			
+			somaDoPenultimoValor += cpfInformado[i] * contador
 			
 			
-			numero += valorInformado[i] * contador
 			
 			contador--;
 			
+			
 			if(contador == 1){
+				
+				
 				break
 			}
 		} 
 		
 	}
 	
-	if(numero % 11 < 2){
-		primeiroCaractere = 0
+	if(somaDoPenultimoValor % 11 < 2){
+		penultimoNumero = 0
 	} else {
-		primeiroCaractere =  11 - (numero % 11)
+		penultimoNumero =  11 - (somaDoPenultimoValor % 11)
 	}
 	
 	
 	
-	document.getElementById('resultado').innerHTML = `
 	
-	Valor Invertido: ${valorInvertido}
+	
+	/////////////////////////////////////////////////////////
+
+	
+	var ultimaPosicao = 0 
+	var ultimoNumero = 0
+	var somaDoUltimoValor = 0
+	
+	var contador = 11
+	
+	
+	
+	
+	for(let i = 0;i < cpfInformado.length;i++) {
+		
+		if(isNaN(cpfInformado[i]) == false) {
+			
+			if(contador > 2) {
+				
+				
+				somaDoUltimoValor += cpfInformado[i] * contador
+
+				contador--;
+			} 	
+			
+			if(contador == 2) {
+				
+			
+				somaDoUltimoValor += penultimoNumero * contador
+
+				
+				
+				contador--;
+			}
+			
+		
+			
+			
+			if(contador == 1){
+				
+				
+				break
+			}
+		} 
+		
+	}
+	
+	if(somaDoUltimoValor % 11 < 2){
+		ultimoNumero = 0
+	} else {
+		ultimoNumero =  11 - (somaDoUltimoValor % 11)
+	}
+	
+	
+	///////////////////////////////////////////////////////
+	
+	
+	
+	var tamanho = cpfInformado.length
+	
+	penultimaPosicao = cpfInformado.charAt(tamanho-2) 
+	ultimaPosicao = cpfInformado.charAt(tamanho-1) 
+	
+	
+	if(penultimaPosicao == penultimoNumero && ultimaPosicao == ultimoNumero){
+		
+		
+		document.getElementById('resultado').innerHTML = `
+	
+	CPF sem Máscara: ${apenasNumeroCPF}${penultimaPosicao}${ultimaPosicao} 
 
 	<br>
 
-	Valor somado: ${numero}
+	Primeiro Valor somado: ${somaDoPenultimoValor}   
 
 	<br>
 
-	Primeiro caractere: ${primeiroCaractere}
+	Primeiro caractere: ${penultimoNumero}
+
+	<hr>
+
+	Segundo Valor somado: ${somaDoUltimoValor}
+
+	<br>
+
+	Segundo caractere: ${ultimoNumero}
+
+	<hr>
+
+	 Penultima ${penultimaPosicao} e Ultimo: ${ultimaPosicao} 
 
 `
+	} else {
+		
+		document.getElementById('resultado').innerHTML = `
+	
+	CPF Inválido
+
+`
+	}
+	
+	
 }
 
 

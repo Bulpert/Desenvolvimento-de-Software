@@ -1,0 +1,332 @@
+<!doctype html>
+<html>
+<head>
+    <script src="" type="text/javascript"></script>
+<meta charset="utf-8">
+<title>Robert Alves - Validando CPF</title>
+<style>
+
+*{
+font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+color:white;
+    }
+    
+    
+
+    
+body
+    {
+background-color: #202020;
+margin: 0px;
+    }
+    
+    
+input
+    {
+display: block;
+height: 40px;
+width: 400px;
+margin: 5px;
+border-radius: 30px;
+border: 1px solid white;
+font-size: 16pt;
+background-color: white !important;
+color: #f28000 !important;
+outline: none;
+    }
+    
+    
+label
+    {
+color: #f28000; 
+display: block;
+font-style: oblique;
+font-size: 25px;
+text-align: center;
+    }
+    
+    
+    
+    
+button
+    {
+background-color: #202020;
+border: none;
+padding: 10px;
+margin: 20px;
+width: 120px;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+transition-duration: 0.4s;
+cursor: pointer;
+background-color: #202020; 
+color: white; 
+
+}
+    
+button:hover
+    {
+background-color: #8ce563;
+color: white;
+    }
+    
+#divBodyOne
+    {
+width: 100%;
+background-color: white !important;
+height: 80px;
+text-align: center; 
+    }
+    
+    
+    
+#divBodyTwo
+    {
+width: 420px;
+margin: 40px auto 0px auto;
+    }
+    
+    
+    
+#divBodyThree
+    {
+background-color: whitesmoke !important;
+color: black !important;
+border-radius: 50px !important;
+text-align: center;
+    }
+
+  
+   
+#logo
+    {
+background-color: white;
+border: none;
+padding-left: 10px !important;
+padding-top: 10px !important;
+text-align: left !important;
+font-size: 40px !important;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+transition-duration: 0.4s;
+cursor: pointer;
+width: 99.4%;
+color: #f28000; 
+    }
+    
+</style>    
+</head>
+<body>
+
+
+<div id="divBodyOne">
+    <a href='https://github.com/Bulpert/Desenvolvimento-de-Software/tree/main/Exerc%C3%ADcios%20Front%20(HTML_CSS_JS)' target='_blank'>
+                     <img style="width: 100px;text-align: right" src='https://i.postimg.cc/W4LNL8VT/github-logo-1068x601.jpg' border='0' alt='github-logo-1068x601'>
+  </a>
+    
+    
+        
+</div>
+    
+      
+    
+    <div id="divBodyTwo">
+        
+		
+		
+		<br>
+		<center>
+		<button onClick="return validarCPF()"><strong>GERAR CPF</strong></button>
+		</center>
+		
+        <br><br>
+       
+        
+        
+      
+       
+   
+<!--      Campo para informar o resultado Final  -->
+        
+      <div style="font-size: 16pt;margin-left: 25px !important" id="resultado">
+
+        </div>    
+            
+<!--            FIM-->
+        
+    </div>
+
+</body>
+    
+    
+    
+
+<script>
+	
+	
+	
+function validarCPF (cpfInformado){
+
+	var min = 100000000
+	var max = 999999999
+	
+	var CPF_Aleatorio = Math.floor(Math.random() * (max - min)  + min)
+	
+	
+	var cpfInformado = CPF_Aleatorio.toString()
+	var apenasNumeroCPF =''
+	
+	
+	var penultimaPosicao = 0
+	var penultimoNumero = 0
+	var somaDoPenultimoValor = 0
+	var mascaraCPF = ''
+	var contadorMascara = 0
+	
+	
+	
+	var contador = 10
+	
+	
+	
+	
+	
+	
+	
+	
+	for(let i = 0;i < cpfInformado.length;i++) {
+		
+		if(isNaN(cpfInformado[i]) == false) {
+			
+			// Montando o CPF com máscara
+			
+			if(contadorMascara == 2 || contadorMascara == 5){
+				mascaraCPF +=  cpfInformado[i]+'.'
+			} else {
+				mascaraCPF += cpfInformado[i]
+			}
+			// contando apenas as posições dos números digitado
+			contadorMascara++
+			
+			
+			// Armazenando apenas o números digitados
+			apenasNumeroCPF += cpfInformado[i]
+			
+			// Aplica o cálculo aqui, para poder fazer a formula depois.
+			somaDoPenultimoValor += cpfInformado[i] * contador
+			
+			
+			
+			contador--;
+			
+			
+			if(contador == 1){
+				
+				
+				break
+			}
+		} 
+		
+	}
+	
+	if(somaDoPenultimoValor % 11 < 2){
+		penultimoNumero = 0
+	} else {
+		penultimoNumero =  11 - (somaDoPenultimoValor % 11)
+	}
+	
+	
+	
+	
+	
+	/////////////////////////////////////////////////////////
+
+	
+	var ultimaPosicao = 0 
+	var ultimoNumero = 0
+	var somaDoUltimoValor = 0
+	
+	var contador = 11
+	
+	
+	
+	
+	for(let i = 0;i < cpfInformado.length;i++) {
+		
+		if(isNaN(cpfInformado[i]) == false) {
+			
+			if(contador > 2) {
+				
+				
+				somaDoUltimoValor += cpfInformado[i] * contador
+
+				contador--;
+			} 	
+			
+			if(contador == 2) {
+				
+			
+				somaDoUltimoValor += penultimoNumero * contador
+
+				
+				
+				contador--;
+			}
+			
+		
+			
+			
+			if(contador == 1){
+				
+				
+				break
+			}
+		} 
+		
+	}
+	
+	if(somaDoUltimoValor % 11 < 2){
+		ultimoNumero = 0
+	} else {
+		ultimoNumero =  11 - (somaDoUltimoValor % 11)
+	}
+	
+	
+	///////////////////////////////////////////////////////
+	
+	
+	
+	var tamanhoCPF = cpfInformado.length
+	
+	penultimaPosicao = cpfInformado.charAt(tamanhoCPF-2) 
+	ultimaPosicao = cpfInformado.charAt(tamanhoCPF-1) 
+	
+	
+	// Validando o CPF
+	
+	
+		
+		
+		document.getElementById('resultado').innerHTML = `
+	
+	<center>
+
+	<i style='color:#8ce563'>CPF Aleatório Gerado com sucesso!</i>
+	
+	<br><br>
+	<b style='color:yellow'>Com Máscara:</b> ${mascaraCPF}-${penultimoNumero}${ultimoNumero}
+
+	<br><br>
+	<b style='color:yellow'>Sem Máscara:</b> ${CPF_Aleatorio}${penultimoNumero}${ultimoNumero}
+	</center>
+`
+
+	
+	
+}
+
+</script>
+
+</html>
