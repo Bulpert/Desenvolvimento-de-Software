@@ -44,6 +44,8 @@ function revelarTabuada()
             
            var repetidor = document.getElementById("xRepeat").value;
            var tabuada = document.getElementById("numeroTabuada").value;
+		
+			
               
               
             //Zerando o valor do 'id="resultado"', para podermos informar novos valores na tela
@@ -59,7 +61,7 @@ function revelarTabuada()
 
 
             //        Atribuindo os valores na tela no 'id="resultado"'
-                     document.getElementById("resultado").innerHTML += tabuada+" x "+contador+": <b style='color:blue'>"+ tabuada*contador+"</b><br>"; 
+                     document.getElementById("resultado").innerHTML += `${tabuada} x ${contador}: <b style='color:blue'> ${tabuada*contador} </b><br>`; 
 
                       //Inclui um CSS dentro do Java Script, para deixar o resultado em azul
                       // incluí um <br> para quebrar as linhas conforme a repetição do for

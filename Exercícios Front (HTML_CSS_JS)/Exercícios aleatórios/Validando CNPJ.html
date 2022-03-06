@@ -19,15 +19,17 @@
 	
 	
 	
-function inverter (valorInformado){
+function inverter (CnpjInformado){
 
 
-	var valorInvertido =''
-	var valorInformado = document.getElementById('cnpj').value
+	var CnpjInvetido = 0
+	var apenasNumeroCnpj = 0
+	var CnpjInformado = document.getElementById('cnpj').value
 	
 	
-	var tamanhoCNPJ = valorInformado.length
+	var tamanhoCNPJ = CnpjInformado.length
 	var contador = 2
+	
 	
 	var somaDoPenultimoValor = 0
 	var penultimoNumero = 0 
@@ -35,14 +37,22 @@ function inverter (valorInformado){
 	var somaDoUltimoValor = 0
 	var ultimoNumero = 0 
 	
+
 	
-	for(i = valorInformado.length-1;i>=0;i--){
+	for(i = CnpjInformado.length-1;i>=0;i--){
 		
-		if(isNaN(valorInformado[i]) == false){
-			valorInvertido += valorInformado[i]
+		if(isNaN(CnpjInformado[i]) == false){
+			CnpjInvetido += CnpjInformado[i]
 			
+			apenasNumeroCnpj++
+			if(apenasNumeroCnpj > 14){
+				document.getElementById('resultado').innerHTML = `informe a quantidade correta
+
+		`;
+				return false;
+			}
 			
-			somaDoPenultimoValor += valorInformado[i] * contador
+			somaDoPenultimoValor += CnpjInformado[i] * contador
 			
 			contador++
 			
@@ -64,9 +74,9 @@ function inverter (valorInformado){
 	var contadorII = 2
 	
 	
-	for(i = valorInformado.length-1;i>=0;i--){
+	for(i = CnpjInformado.length-1;i>=0;i--){
 		
-		if(isNaN(valorInformado[i]) == false){
+		if(isNaN(CnpjInformado[i]) == false){
 			
 			
 			if(contadorII == 2 && i > 10){
@@ -77,20 +87,20 @@ function inverter (valorInformado){
 			}
 			
 			
-			if(contadorII > 2){
+			if(contadorII >= 2){
 				
-				somaDoUltimoValor += valorInformado[i] * contadorII
+				somaDoUltimoValor += CnpjInformado[i] * contadorII
 
 				contadorII++
 			}
-			
-				if(contadorII == 2){
-				
-				somaDoUltimoValor += valorInformado[i] * contadorII
-
-				contadorII++
-			}
-			
+//			
+//				if(contadorII == 2){
+//				
+//				somaDoUltimoValor += CnpjInformado[i] * contadorII
+//
+//				contadorII++
+//			}
+//			
 			
 			
 			if(contadorII == 10){
@@ -111,7 +121,7 @@ function inverter (valorInformado){
 	
 	document.getElementById('resultado').innerHTML = `
 
-	Valor Invertido: ${valorInvertido}
+	Valor Invertido: ${CnpjInvetido}
 
 	<br>
 	Tamanho: ${tamanhoCNPJ}
@@ -122,7 +132,7 @@ function inverter (valorInformado){
     Penultimo Numero ${penultimoNumero} Ultimo Numero ${ultimoNumero}
 
 <br><BR>
-	CPF final ${valorInformado}-${penultimoNumero}${ultimoNumero}
+	CNPJ final ${CnpjInformado}-${penultimoNumero}${ultimoNumero}
 	
 
 		`

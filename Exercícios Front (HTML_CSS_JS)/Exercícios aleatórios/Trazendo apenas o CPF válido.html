@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <script src="" type="text/javascript"></script>
+    
 <meta charset="utf-8">
 <title>Robert Alves - Validando CPF</title>
 <style>
@@ -123,8 +123,8 @@ color: #f28000;
 
 <div id="divBodyOne">
     <a href='https://github.com/Bulpert/Desenvolvimento-de-Software/tree/main/Exerc%C3%ADcios%20Front%20(HTML_CSS_JS)' target='_blank'>
-                     <img style="width: 100px;text-align: right" src='https://i.postimg.cc/W4LNL8VT/github-logo-1068x601.jpg' border='0' alt='github-logo-1068x601'>
-                     </a>
+     <img style="width: 100px;text-align: right" src='https://i.postimg.cc/W4LNL8VT/github-logo-1068x601.jpg' border='0' alt='github-logo-1068x601'>
+     </a>
     
     
         
@@ -143,7 +143,7 @@ color: #f28000;
         <br>
         
       
-       <input id="cpf" onMouseOut="return validarCPF()" placeholder="Informe um CPF (sem máscara)" size="30px" maxlength="11">
+       <input id="cpf" onMouseOut="return validarCPF()" placeholder="Informe um CPF (com ou sem máscara)" size="30px" maxlength="14">
         <br>
    
 <!--      Campo para informar o resultado Final  -->
@@ -180,7 +180,7 @@ function validarCPF (cpfInformado){
 	
 	
 	var contador = 10
-	
+	var estado = ''
 	
 	
 	
@@ -190,7 +190,11 @@ function validarCPF (cpfInformado){
 	
 	for(let i = 0;i < cpfInformado.length;i++) {
 		
+		
 		if(isNaN(cpfInformado[i]) == false) {
+			
+		
+			
 			
 			// Montando o CPF com máscara
 			
@@ -199,6 +203,53 @@ function validarCPF (cpfInformado){
 			} else {
 				mascaraCPF += cpfInformado[i]
 			}
+			
+			
+			if(contadorMascara == 8){
+				
+					
+	
+					switch(cpfInformado.charAt(i)) {
+							
+							
+							
+						case '0': estado = 'Rio Grande do Sul' 
+							break	
+							
+						case '1': estado = 'Distrito Federal, Goiás, Mato Grosso, Mato Grosso do Sul e Tocantins' 
+							break
+							
+						case '2': estado = 'Amazonas, Pará, Roraima, Amapá, Acre e Rondônia' 
+							break
+							
+						case '3': estado = 'Ceará, Maranhão e Piauí' 
+							break
+							
+						case '4': estado = 'Paraíba, Pernambuco, Alagoas e Rio Grande do Norte' 
+							break
+							
+						case '5': estado = 'Bahia e Sergipe' 
+							break
+							
+						case '6': estado = 'Minas Gerais' 
+							break
+							
+						case '7': estado = 'Rio de Janeiro e Espírito Santo' 
+							break
+							
+						case '8': estado = 'São Paulo' 
+							break
+						
+						case '9': estado = 'Paraná e Santa Catarina' 
+							break
+							
+					}
+			}
+		
+			
+			
+			
+			
 			// contando apenas as posições dos números digitado
 			contadorMascara++
 			
@@ -221,7 +272,9 @@ function validarCPF (cpfInformado){
 			}
 		} 
 		
-	}
+	} // fim FOR
+	
+	
 	
 	if(somaDoPenultimoValor % 11 < 2){
 		penultimoNumero = 0
@@ -318,6 +371,10 @@ function validarCPF (cpfInformado){
 		<br>
 
 		CPF sem máscara: ${apenasNumeroCPF}${penultimoNumero}${ultimoNumero}
+
+		<br>
+
+		Estado de origem: <b style='color:aqua'>${estado}</b>
 		
 	
 
